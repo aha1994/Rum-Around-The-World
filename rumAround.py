@@ -105,7 +105,7 @@ with tab3:
         predicted_country = model_country.predict(formatFlavorProfile(flavor_profile, flavors['0'].values))[0].title()
         st.write("#")
         st.write(f'The Predicted Country for a Rum with this Flavor Profile: {predicted_country}')
-        st.write(f'The Predicted Rating for a Rum with this Flavor Profile: {round(model_rating.predict(formatFlavorProfile(flavor_profile, flavors['0'].values))[0], 1)}/10')
+        st.write(f'The Predicted Rating for a Rum with this Flavor Profile: {round(model_rating.predict(formatFlavorProfile(flavor_profile, flavors["0"].values))[0], 1)}/10')
         st.write("#")
 
         with st.container():
