@@ -1,9 +1,9 @@
 streamlit
 pandas
 numpy
-matplotlib.pyplot
+matplotlib
 seaborn
 pickle
 sklearn
-plotly.express
+plotly
 wordcloud
