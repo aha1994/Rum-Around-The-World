@@ -8,7 +8,7 @@ import plotly.express as px
 
 def heatMap(country='jamaica', number_notes=25, attr_='Taste_Notes'):
     # load tasting df
-    rum_tasting = pd.read_csv('Data/rum.csv')
+    rum_tasting = pd.read_csv('Data/rums_5_2024.csv')
     
     # subset df based on attr_
     rum_tasting = rum_tasting[~pd.isna(rum_tasting[attr_])]

@@ -28,18 +28,20 @@ with st.container():
 tab1, tab2, tab3 = st.tabs(["Exploring the Data Set", "Flavor Heat Maps", 'Predictive Models'])
 
 # load rum data set
-rum = pd.read_csv('Data/rum_12_2023.csv')
+rum = pd.read_csv('Data/rums_5_2024.csv')
 
 # load flavors
-flavors = pd.read_csv("Data/flavors.csv")
+flavors = pd.read_csv("Data/flavors_5_2024.csv")
 
-# load word cloud data
-wordcloudDF = pd.read_csv('Data/taste_counts.csv')
-d = {taste:count for taste, count in zip(wordcloudDF['Taste'], wordcloudDF['Count'])}
+# # load word cloud data
+# wordcloudDF = pd.read_csv('Data/taste_counts.csv')
+# d = {taste:count for taste, count in zip(wordcloudDF['Taste'], wordcloudDF['Count'])}
 
 # load models
-model_rating = pickle.load(open('Models/taste_to_score.sav', 'rb'))
-model_country = pickle.load(open('Models/taste_to_country.sav', 'rb'))
+# model_rating = pickle.load(open('Models/Archive/taste_to_score.sav', 'rb'))
+# model_country = pickle.load(open('Models/Archive/taste_to_country.sav', 'rb'))
+model_rating = pickle.load(open('Models/taste_to_score_5_2024.sav', 'rb'))
+model_country = pickle.load(open('Models/taste_to_country_5_2024.sav', 'rb'))
 
 with tab1:
     st.write(" ")
@@ -51,13 +53,13 @@ with tab1:
         #colB.plotly_chart(makeHist(rum, 'Rating'), use_container_width=True)
         colC.markdown(f"<h4 style='text-align: center'>Unique Countries/Territories: {len(rum['Country'].value_counts().index)}</h4>", unsafe_allow_html=True)
         #colC.plotly_chart(makeHist(rum, 'Rating'), use_container_width=True)
-        colD.markdown(f"<h4 style='text-align: center'>Unique Tasting Notes: {224}</h4>", unsafe_allow_html=True)
+        colD.markdown(f"<h4 style='text-align: center'>Unique Tasting Notes: {len(flavors)}</h4>", unsafe_allow_html=True)
     st.write(" ")
     with st.container():
         colX, colY, colZ = st.columns([2,3,3])
         with colX:
             _, col5, _ = st.columns([1,5,1])
-            col5.image('Img/wc.png')
+            col5.image('Img/wc_05_2024.png')
 
         with colY:
             colY2, _ = st.columns([12,1])
@@ -97,15 +99,15 @@ with tab3:
 
     ' ',
 
-    sorted(list(flavors['0'].values)),
+    sorted(list(flavors['Flavors'].values)),
 
     max_selections = 8)
 
     if len(flavor_profile) >= 3:
-        predicted_country = model_country.predict(formatFlavorProfile(flavor_profile, flavors['0'].values))[0].title()
+        predicted_country = model_country.predict(formatFlavorProfile(flavor_profile, flavors['Flavors'].values))[0].title()
         st.write("#")
         st.write(f'The Predicted Country for a Rum with this Flavor Profile: {predicted_country}')
-        st.write(f'The Predicted Rating for a Rum with this Flavor Profile: {round(model_rating.predict(formatFlavorProfile(flavor_profile, flavors["0"].values))[0], 1)}/10')
+        st.write(f'The Predicted Rating for a Rum with this Flavor Profile: {round(model_rating.predict(formatFlavorProfile(flavor_profile, flavors['Flavors'].values))[0], 1)}/10')
         st.write("#")
 
         with st.container():
