@@ -57,7 +57,6 @@ with tab1:
         colX, colY, colZ = st.columns([2,3,3])
         with colX:
             _, col5, _ = st.columns([1,5,1])
-            col5.write('#')
             col5.image('Img/wc_05_2024.png')
 
         with colY:
@@ -70,7 +69,7 @@ with tab1:
         with colZ:
             colZ2, _ = st.columns([12,1])
             colZ2.write("##")
-            # colZ2.write("##")
+            colZ2.write("##")
             colZ2.write("##")
             colZ2.plotly_chart(makeBar(rum), use_container_width=True)
     
