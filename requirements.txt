@@ -124,7 +124,7 @@ notebook-shim==0.2.3
 numexpr==2.10.1
 numpy==1.26.4
 numpy-base==1.26.4
-openjpeg=2.5.2
+openjpeg==2.5.2
 openssl==3.0.15
 orc==2.0.1
 overrides==7.4.0
