@@ -1,5 +1,5 @@
 matplotlib
-numpy==1.14.5
+numpy==1.26.4 
 pandas
 plotly
 scikit-learn==1.1.3
